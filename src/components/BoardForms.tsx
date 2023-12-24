@@ -21,17 +21,11 @@ function BoardForms(props: BoardFormProps) {
 			<input
 				type="text"
 				name="title"
-				className="w-full h-12 px-4 border border-gray-300 rounded-sm focus:outline-none  focus:ring-none focus:border-none "
+				className="w-full h-12 px-4 border bg-gray-200  focus:outline-none  focus:ring-none focus:border-none "
 				placeholder="add a new board..."
 				ref={inputElement}
 				maxLength={24}
 			/>
-			<button
-				type="submit"
-				className="px-3 py-2 bg-black text-white rounded-sm my-2"
-			>
-				Submit
-			</button>
 		</form>
 	);
 }
