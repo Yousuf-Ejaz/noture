@@ -1,5 +1,5 @@
 type EllipsisIconProps = {
-	customClass: String;
+	customClass: string;
 };
 function EllipsisIcon(props: EllipsisIconProps) {
 	const { customClass } = props;

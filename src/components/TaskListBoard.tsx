@@ -2,12 +2,12 @@ import { Key, useRef, useState } from "react";
 
 type TaskListBoardPropsType = {
 	id: Key | null | undefined;
-	title: String;
+	title: string;
 };
 
 type TaskType = {
 	id: Key | null | undefined;
-	content: String;
+	content: string;
 };
 function TaskListBoard(props: TaskListBoardPropsType) {
 	const { title } = props;

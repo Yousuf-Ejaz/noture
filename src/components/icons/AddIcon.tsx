@@ -1,5 +1,5 @@
 type AddIconPropsType = {
-	customClass: String;
+	customClass: string;
 };
 function AddIcon(props: AddIconPropsType) {
 	const { customClass } = props;

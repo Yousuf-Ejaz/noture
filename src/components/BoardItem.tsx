@@ -1,9 +1,9 @@
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "./ui/button";
 type BoardItemProps = {
-	id: String;
-	title: String;
-	deleteBoard: (id: String) => void;
+	id: string;
+	title: string;
+	deleteBoard: (id: string) => void;
 };
 
 function BoardItem(props: BoardItemProps) {

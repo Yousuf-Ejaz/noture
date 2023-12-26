@@ -4,13 +4,13 @@ import EllipsisIcon from "@/components/icons/EllipsisIcon";
 import { Key, useRef, useState } from "react";
 
 type taskType = {
-	id: String;
-	content: String;
+	id: string;
+	content: string;
 };
 
 type taskListType = {
 	id: Key | null | undefined;
-	title: String;
+	title: string;
 	tasks: taskType[];
 };
 

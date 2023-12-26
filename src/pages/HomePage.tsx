@@ -2,30 +2,39 @@ import BoardForms from "@/components/BoardForms";
 import BoardItem from "@/components/BoardItem";
 import AddIcon from "@/components/icons/AddIcon";
 import EllipsisIcon from "@/components/icons/EllipsisIcon";
-import { Board } from "@/types/board";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { StateType } from "@/types/board";
+import { addBoard, deleteBoard } from "@/actions/boardListActions";
 
-type State = {
-	boards: Board[];
-};
 function HomePage() {
-	const [state, setState] = useState<State>({ boards: [] });
-
-	const addBoard = (title: string) => {
-		console.log("addBoard called with Title: ", title);
-		const newBoard = {
-			id: crypto.randomUUID(),
-			title: title,
-		};
-		setState({ boards: [...state.boards, newBoard] });
+	const taskList = useSelector((state: StateType) => state.boardList);
+	const dispatch = useDispatch();
+	const addNewBoard = (title: string) => {
+		addBoard(title);
+		dispatch(addBoard(title));
 	};
 
-	const deleteBoard = (id: String) => {
-		console.log("deleteBoard called with ID: ", id);
-		const newBoards = state.boards.filter((board) => board.id !== id);
-		setState({ boards: newBoards });
+	const deleteBoardById = (id: string) => {
+		dispatch(deleteBoard(id));
 	};
+	// const [state, setState] = useState<State>({ boards: [] });
+
+	// const addBoard = (title: string) => {
+	// 	console.log("addBoard called with Title: ", title);
+	// 	const newBoard = {
+	// 		id: crypto.randomUUID(),
+	// 		title: title,
+	// 		taskList: [],
+	// 	};
+	// 	setState({ boards: [...state.boards, newBoard] });
+	// };
+
+	// const deleteBoard = (id: string) => {
+	// 	console.log("deleteBoard called with ID: ", id);
+	// 	const newBoards = state.boards.filter((board) => board.id !== id);
+	// 	setState({ boards: newBoards });
+	// };
 	return (
 		<div className="h-screen max-w-2xl mx-auto  p-6 flex flex-col justify-start gap-3">
 			<div className="flex justify-between">
@@ -39,14 +48,14 @@ function HomePage() {
 					</div>
 				</div>
 			</div>
-			<BoardForms addBoard={addBoard} />
-			{state.boards.map((board) => (
+			<BoardForms addBoard={addNewBoard} />
+			{taskList.map((board) => (
 				<Link to={`/boards/${board.id}`} key={board.id}>
 					<BoardItem
 						id={board.id}
 						title={board.title}
 						key={board.id}
-						deleteBoard={deleteBoard}
+						deleteBoard={deleteBoardById}
 					/>
 				</Link>
 			))}

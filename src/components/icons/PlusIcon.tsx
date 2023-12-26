@@ -1,5 +1,5 @@
 type PlusIconProps = {
-	customclass: String;
+	customclass: string;
 };
 function PlusIcon(props: PlusIconProps) {
 	const { customclass } = props;
