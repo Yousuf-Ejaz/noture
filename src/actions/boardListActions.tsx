@@ -1,40 +1,34 @@
+import { RootState } from "@/store";
 import { Board } from "@/types/board";
+import { ThunkAction } from "redux-thunk";
+export type Action = { type: string; payload: { newBoard: Board; id: string } };
 
-export const addBoard =
-	(title: string) =>
-	(
-		dispatch: (action: {
-			type: string;
-			payload: { newBoard: Board; id: string };
-		}) => void,
-		getState: () => { boardList: Board[] }
-	) => {
-		const newBoard: Board = {
-			id: crypto.randomUUID(),
-			title: title,
-			taskList: [],
-		};
-		dispatch({ type: "ADD_BOARD", payload: { newBoard, id: "" } });
-		localStorage.setItem("boardList", JSON.stringify(getState().boardList));
+export const addBoard = (
+	title: string
+): ThunkAction<void, RootState, undefined, Action> => {
+	const newBoard: Board = {
+		id: crypto.randomUUID(),
+		title: title,
+		taskList: [],
 	};
-
-export const deleteBoard =
-	(id: string) =>
-	async (
-		dispatch: (action: {
-			type: string;
-			payload: { newBoard: Board; id: string };
-		}) => void,
-		getState: () => { boardList: Board[] }
-	) => {
-		const mockBoard: Board = {
-			id: "",
-			title: "",
-			taskList: [],
-		};
-		dispatch({
+	return (dispatch, getState) => {
+		localStorage.setItem("boardList", JSON.stringify(getState().boardList));
+		return dispatch({ type: "ADD_BOARD", payload: { newBoard, id: "" } });
+	};
+};
+export const deleteBoard = (
+	id: string
+): ThunkAction<void, RootState, undefined, Action> => {
+	const mockBoard: Board = {
+		id: "",
+		title: "",
+		taskList: [],
+	};
+	return (dispatch, getState) => {
+		localStorage.setItem("boardList", JSON.stringify(getState().boardList));
+		return dispatch({
 			type: "DELETE_BOARD",
 			payload: { newBoard: mockBoard, id },
 		});
-		localStorage.setItem("boardList", JSON.stringify(getState().boardList));
 	};
+};

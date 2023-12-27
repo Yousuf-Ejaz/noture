@@ -1,9 +1,7 @@
 import { Board } from "@/types/board";
+import { Action } from "@/actions/boardListActions";
 
-export const boardListReducer = (
-	state: Board[] = [],
-	action: { type: string; payload: { newBoard: Board; id: string } }
-): Board[] => {
+export const boardListReducer = (state: Board[] = [], action: Action) => {
 	switch (action.type) {
 		case "ADD_BOARD": {
 			const { newBoard } = action.payload;

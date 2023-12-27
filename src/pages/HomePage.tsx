@@ -6,35 +6,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { StateType } from "@/types/board";
 import { addBoard, deleteBoard } from "@/actions/boardListActions";
-
+import { ThunkDispatch } from "redux-thunk";
+import { Action } from "redux";
+type AppDispatch = ThunkDispatch<StateType, undefined, Action>;
 function HomePage() {
 	const taskList = useSelector((state: StateType) => state.boardList);
-	const dispatch = useDispatch();
+	const dispatch: AppDispatch = useDispatch();
 	const addNewBoard = (title: string) => {
-		addBoard(title);
 		dispatch(addBoard(title));
 	};
 
 	const deleteBoardById = (id: string) => {
 		dispatch(deleteBoard(id));
 	};
-	// const [state, setState] = useState<State>({ boards: [] });
-
-	// const addBoard = (title: string) => {
-	// 	console.log("addBoard called with Title: ", title);
-	// 	const newBoard = {
-	// 		id: crypto.randomUUID(),
-	// 		title: title,
-	// 		taskList: [],
-	// 	};
-	// 	setState({ boards: [...state.boards, newBoard] });
-	// };
-
-	// const deleteBoard = (id: string) => {
-	// 	console.log("deleteBoard called with ID: ", id);
-	// 	const newBoards = state.boards.filter((board) => board.id !== id);
-	// 	setState({ boards: newBoards });
-	// };
 	return (
 		<div className="h-screen max-w-2xl mx-auto  p-6 flex flex-col justify-start gap-3">
 			<div className="flex justify-between">

@@ -2,16 +2,10 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { thunk } from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { boardListReducer } from "./reducers/boardListReducers";
-import { Board } from "./types/board";
-
-type initialStateType = {
-	boardList: Board[];
-};
 
 const reducer = combineReducers({ boardList: boardListReducer });
 
-
-const initialState: Partial<{ boardList: never }> = {};
+const initialState = {};
 const middleware = [thunk];
 
 const store = createStore(
@@ -19,5 +13,5 @@ const store = createStore(
 	initialState,
 	composeWithDevTools(applyMiddleware(...middleware))
 );
-
+export type RootState = ReturnType<typeof store.getState>;
 export default store;
