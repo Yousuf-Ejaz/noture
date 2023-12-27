@@ -3,13 +3,13 @@ import { Button } from "./ui/button";
 type BoardItemProps = {
 	id: string;
 	title: string;
-	deleteBoard: (id: string) => void;
+	deleteBoard: (id: string, e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 function BoardItem(props: BoardItemProps) {
 	const { id, title, deleteBoard } = props;
-	const clickHandler = () => {
-		deleteBoard(id);
+	const clickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+		deleteBoard(id, e);
 	};
 	return (
 		<Card>

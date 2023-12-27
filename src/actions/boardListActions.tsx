@@ -12,8 +12,8 @@ export const addBoard = (
 		taskList: [],
 	};
 	return (dispatch, getState) => {
+		dispatch({ type: "ADD_BOARD", payload: { newBoard, id: "" } });
 		localStorage.setItem("boardList", JSON.stringify(getState().boardList));
-		return dispatch({ type: "ADD_BOARD", payload: { newBoard, id: "" } });
 	};
 };
 export const deleteBoard = (
@@ -25,10 +25,10 @@ export const deleteBoard = (
 		taskList: [],
 	};
 	return (dispatch, getState) => {
-		localStorage.setItem("boardList", JSON.stringify(getState().boardList));
-		return dispatch({
+		dispatch({
 			type: "DELETE_BOARD",
 			payload: { newBoard: mockBoard, id },
 		});
+		localStorage.setItem("boardList", JSON.stringify(getState().boardList));
 	};
 };

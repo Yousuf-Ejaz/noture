@@ -16,7 +16,11 @@ function HomePage() {
 		dispatch(addBoard(title));
 	};
 
-	const deleteBoardById = (id: string) => {
+	const deleteBoardById = (
+		id: string,
+		e: React.MouseEvent<HTMLButtonElement>
+	) => {
+		e.preventDefault();
 		dispatch(deleteBoard(id));
 	};
 	return (

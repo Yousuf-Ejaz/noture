@@ -6,6 +6,7 @@ import { boardListReducer } from "./reducers/boardListReducers";
 const reducer = combineReducers({ boardList: boardListReducer });
 
 const initialState = {};
+
 const middleware = [thunk];
 
 const store = createStore(
